@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Result Page!</title>
+<title>结果返回!</title>
 </head>
 <body>
 ${validation }
