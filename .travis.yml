@@ -1,0 +1,36 @@
+language: java
+# nodejs版本
+jdk: 
+    - openjdk7
+
+# Travis-CI Caching
+
+
+# S: Build Lifecycle
+install:
+  - "echo skipped"
+
+before_script:
+
+# 无其他依赖项所以执行npm run build 构建就行了
+script:
+  - - mvn install -Dmaven.javadoc.skip=true
+
+after_script:
+  - cd ./dist
+  - git init
+  - git config user.name "${U_NAME}"
+  - git config user.email "${U_EMAIL}"
+  - git add .
+  - git commit -m "Update tools"
+  - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:${P_BRANCH}
+# E: Build LifeCycle
+
+#指定分支，只有指定的分支提交时才会运行脚本
+branches:
+  only:
+    - develop
+env:
+ global:
+   # 我将其添加到了travis-ci的环境变量中
+   #- GH_REF: github.com/yimogit/metools.git 
